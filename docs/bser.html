@@ -5,8 +5,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Begin Jekyll SEO tag v2.2.3 -->
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>BSER Binary Protocol | Watchman</title>
+<meta name="generator" content="Jekyll v3.9.0" />
 <meta property="og:title" content="BSER Binary Protocol" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="The basic JSON protocol in watchman allows quick and easy integration. Applications with higher performance requirements may want to consider the binary protocol instead." />
@@ -16,9 +17,9 @@
 <meta property="og:site_name" content="Watchman" />
 <meta property="og:image" content="https://facebook.github.io/watchman/static/og_image.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-07-13T18:42:18-07:00" />
+<meta property="article:published_time" content="2020-12-03T15:40:25+00:00" />
 <script type="application/ld+json">
-{"@context":"http://schema.org","@type":"BlogPosting","headline":"BSER Binary Protocol","image":"https://facebook.github.io/watchman/static/og_image.png","datePublished":"2020-07-13T18:42:18-07:00","dateModified":"2020-07-13T18:42:18-07:00","description":"The basic JSON protocol in watchman allows quick and easy integration. Applications with higher performance requirements may want to consider the binary protocol instead.","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://facebook.github.io/watchman/static/logo.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://facebook.github.io/watchman/docs/bser.html"},"url":"https://facebook.github.io/watchman/docs/bser.html"}</script>
+{"headline":"BSER Binary Protocol","url":"https://facebook.github.io/watchman/docs/bser.html","dateModified":"2020-12-03T15:40:25+00:00","datePublished":"2020-12-03T15:40:25+00:00","description":"The basic JSON protocol in watchman allows quick and easy integration. Applications with higher performance requirements may want to consider the binary protocol instead.","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://facebook.github.io/watchman/static/logo.png"}},"@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://facebook.github.io/watchman/docs/bser.html"},"image":"https://facebook.github.io/watchman/static/og_image.png","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -725,18 +726,18 @@ the peer to determine how much storage is required to read and decode it.</p>
 
 <h2 id="arrays">Arrays</h2>
 
-<p>Arrays are indicated by a <code class="highlighter-rouge">0x00</code> byte value followed by an integer value to
+<p>Arrays are indicated by a <code class="language-plaintext highlighter-rouge">0x00</code> byte value followed by an integer value to
 indicate how many items follow.  Then each item is encoded one after the other.</p>
 
 <h2 id="objects">Objects</h2>
 
-<p>Objects are indicated by a <code class="highlighter-rouge">0x01</code> byte value followed by an integer value to
+<p>Objects are indicated by a <code class="language-plaintext highlighter-rouge">0x01</code> byte value followed by an integer value to
 indicate the number of properties in the object.  Then each key/value pair is
 encoded one after the other.</p>
 
 <h2 id="strings">Strings</h2>
 
-<p>Strings are indicated by a <code class="highlighter-rouge">0x02</code> byte value followed by an integer value to
+<p>Strings are indicated by a <code class="language-plaintext highlighter-rouge">0x02</code> byte value followed by an integer value to
 indicate the number of bytes in the string, followed by the bytes of the
 string.</p>
 
@@ -760,75 +761,73 @@ filenames don’t always have one, and filenames are unlikely to show up as keys
 running the watchman daemon.</p>
 
 <ul>
-  <li><code class="highlighter-rouge">0x03</code> indicates an int8_t.  It is followed by the int8_t value.</li>
-  <li><code class="highlighter-rouge">0x04</code> indicates an int16_t. It is followed by the int16_t value.</li>
-  <li><code class="highlighter-rouge">0x05</code> indicates an int32_t. It is followed by the int32_t value.</li>
-  <li><code class="highlighter-rouge">0x06</code> indicates an int64_t. It is followed by the int64_t value.</li>
+  <li><code class="language-plaintext highlighter-rouge">0x03</code> indicates an int8_t.  It is followed by the int8_t value.</li>
+  <li><code class="language-plaintext highlighter-rouge">0x04</code> indicates an int16_t. It is followed by the int16_t value.</li>
+  <li><code class="language-plaintext highlighter-rouge">0x05</code> indicates an int32_t. It is followed by the int32_t value.</li>
+  <li><code class="language-plaintext highlighter-rouge">0x06</code> indicates an int64_t. It is followed by the int64_t value.</li>
 </ul>
 
 <h2 id="real">Real</h2>
 
-<p>A real number is indicated by a <code class="highlighter-rouge">0x07</code> byte followed by 8 bytes of double value.</p>
+<p>A real number is indicated by a <code class="language-plaintext highlighter-rouge">0x07</code> byte followed by 8 bytes of double value.</p>
 
 <h2 id="boolean">Boolean</h2>
 
 <ul>
-  <li><code class="highlighter-rouge">0x08</code> indicates boolean true</li>
-  <li><code class="highlighter-rouge">0x09</code> indicates boolean false</li>
+  <li><code class="language-plaintext highlighter-rouge">0x08</code> indicates boolean true</li>
+  <li><code class="language-plaintext highlighter-rouge">0x09</code> indicates boolean false</li>
 </ul>
 
 <h2 id="null">Null</h2>
 
-<p><code class="highlighter-rouge">0x0a</code> indicates the null value</p>
+<p><code class="language-plaintext highlighter-rouge">0x0a</code> indicates the null value</p>
 
 <h2 id="array-of-templated-objects">Array of Templated Objects</h2>
 
-<p><code class="highlighter-rouge">0x0b</code> indicates a compact array of objects follows.  Some of the bigger
+<p><code class="language-plaintext highlighter-rouge">0x0b</code> indicates a compact array of objects follows.  Some of the bigger
 datastructures returned by watchman are tabular data expressed as an array
 of objects.  This serialization type factors out the repeated object keys
 into a header array listing the keys, followed by an array containing
 all the values of the objects.</p>
 
-<p>To represent missing keys in templated arrays, the <code class="highlighter-rouge">0x0c</code> encoding value may
+<p>To represent missing keys in templated arrays, the <code class="language-plaintext highlighter-rouge">0x0c</code> encoding value may
 be present.  If encountered it is interpreted as meaning that there is no value
 for the key that would have been decoded in this position.  This is distinct
 from the null value.</p>
 
 <p>For example:</p>
 
-<div class="highlighter-rouge"><div class="rougeHighlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
-2
-3
-4
-5</pre></td><td class="code"><pre>[
-   {"name": "fred", "age": 20},
-   {"name": "pete", "age": 30},
-   {"age": 25 },
-]
-</pre></td></tr></tbody></table>
-</div>
-</div>
-
-<p>is represented similar to:</p>
-
-<div class="highlighter-rouge"><div class="rougeHighlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="rougeHighlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
 5
-6</pre></td><td class="code"><pre>["name", "age"],
+</pre></td><td class="rouge-code"><pre>[
+   {"name": "fred", "age": 20},
+   {"name": "pete", "age": 30},
+   {"age": 25 },
+]
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>is represented similar to:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="rougeHighlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>["name", "age"],
 [
   "fred", 20,
   "pete", 30,
   0x0c,   25
 ]
-</pre></td></tr></tbody></table>
-</div>
-</div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>The precise sequence is:</p>
 
-<div class="highlighter-rouge"><div class="rougeHighlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="rougeHighlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -847,7 +846,8 @@ from the null value.</p>
 17
 18
 19
-20</pre></td><td class="code"><pre>0b          template
+20
+</pre></td><td class="rouge-code"><pre>0b          template
 00          array     -- start prop names
 0302        int, 2    -- two prop names
 02          string    -- first prop "name"
@@ -867,9 +867,7 @@ from the null value.</p>
 031e        int, 0x1e -- object 2, prop 2 age=30
 0c          skip      -- object 3, prop 1, not set
 0319        int, 0x19 -- object 3, prop 2 age=25
-</pre></td></tr></tbody></table>
-</div>
-</div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
     
   </article>

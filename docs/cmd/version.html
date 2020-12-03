@@ -5,8 +5,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Begin Jekyll SEO tag v2.2.3 -->
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>version | Watchman</title>
+<meta name="generator" content="Jekyll v3.9.0" />
 <meta property="og:title" content="version" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="The version command will tell you the version and build information for the currently running watchman service:" />
@@ -16,9 +17,9 @@
 <meta property="og:site_name" content="Watchman" />
 <meta property="og:image" content="https://facebook.github.io/watchman/static/og_image.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-07-13T18:42:18-07:00" />
+<meta property="article:published_time" content="2020-12-03T15:40:25+00:00" />
 <script type="application/ld+json">
-{"@context":"http://schema.org","@type":"BlogPosting","headline":"version","image":"https://facebook.github.io/watchman/static/og_image.png","datePublished":"2020-07-13T18:42:18-07:00","dateModified":"2020-07-13T18:42:18-07:00","description":"The version command will tell you the version and build information for the currently running watchman service:","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://facebook.github.io/watchman/static/logo.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://facebook.github.io/watchman/docs/cmd/version.html"},"url":"https://facebook.github.io/watchman/docs/cmd/version.html"}</script>
+{"headline":"version","url":"https://facebook.github.io/watchman/docs/cmd/version.html","dateModified":"2020-12-03T15:40:25+00:00","datePublished":"2020-12-03T15:40:25+00:00","description":"The version command will tell you the version and build information for the currently running watchman service:","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://facebook.github.io/watchman/static/logo.png"}},"@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://facebook.github.io/watchman/docs/cmd/version.html"},"image":"https://facebook.github.io/watchman/static/og_image.png","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -714,30 +715,28 @@ window.addEventListener('load', function() {
       <p>The version command will tell you the version and build information
 for the currently running watchman service:</p>
 
-<div class="language-bash highlighter-rouge"><div class="rougeHighlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="rougeHighlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
-5</pre></td><td class="code"><pre><span class="gp">$ </span>watchman version
+5
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>watchman version
 <span class="o">{</span>
     <span class="s2">"version"</span>: <span class="s2">"2.9.6"</span>,
     <span class="s2">"buildinfo"</span>: <span class="s2">"git:2727d9a1e47a4a2229c65cbb2f0c7656cbd96270"</span>
 <span class="o">}</span>
-</pre></td></tr></tbody></table>
-</div>
-</div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>To get the version of the client:</p>
 
-<div class="language-bash highlighter-rouge"><div class="rougeHighlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
-2</pre></td><td class="code"><pre><span class="gp">$ </span>watchman -v
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="rougeHighlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>watchman <span class="nt">-v</span>
 2.9.8
-</pre></td></tr></tbody></table>
-</div>
-</div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>If the server and client versions don’t match up, you should probably
-restart your server: <code class="highlighter-rouge">watchman shutdown-server ; watchman</code>.</p>
+restart your server: <code class="language-plaintext highlighter-rouge">watchman shutdown-server ; watchman</code>.</p>
 
 <h3 id="capabilities">Capabilities</h3>
 
@@ -751,69 +750,46 @@ were introduced.</p>
 
 <p>You can read more about the <a href="/watchman/docs/capabilities.html">available capability names</a>.</p>
 
-<p>To check whether the <code class="highlighter-rouge">relative_root</code> capability is supported:</p>
+<p>To check whether the <code class="language-plaintext highlighter-rouge">relative_root</code> capability is supported:</p>
 
-<div class="language-bash highlighter-rouge"><div class="rougeHighlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
-2
-3
-4
-5
-6
-7</pre></td><td class="code"><pre><span class="gp">$ </span>watchman -j <span class="o">&lt;&lt;&lt;</span> <span class="s1">'["version", {"optional":["relative_root"]}]'</span>
-<span class="o">{</span>
-    <span class="s2">"version"</span>: <span class="s2">"3.8.0"</span>,
-    <span class="s2">"capabilities"</span>: <span class="o">{</span>
-        <span class="s2">"relative_root"</span>: <span class="nb">true</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</pre></td></tr></tbody></table>
-</div>
-</div>
-
-<p>If the capability is not supported:</p>
-
-<div class="language-bash highlighter-rouge"><div class="rougeHighlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
-2
-3
-4
-5
-6
-7</pre></td><td class="code"><pre><span class="gp">$ </span>watchman -j <span class="o">&lt;&lt;&lt;</span> <span class="s1">'["version", {"optional":["will-never-exist"]}]'</span>
-<span class="o">{</span>
-    <span class="s2">"version"</span>: <span class="s2">"3.8.0"</span>,
-    <span class="s2">"capabilities"</span>: <span class="o">{</span>
-        <span class="s2">"will-never-exist"</span>: <span class="nb">false</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</pre></td></tr></tbody></table>
-</div>
-</div>
-
-<p>To have the server generate an error response if a capability is not
-supported:</p>
-
-<div class="language-bash highlighter-rouge"><div class="rougeHighlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="rougeHighlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
 5
 6
 7
-8</pre></td><td class="code"><pre><span class="gp">$ </span>watchman -j <span class="o">&lt;&lt;&lt;</span> <span class="s1">'["version", {"required":["will-never-exist"]}]'</span>
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>watchman <span class="nt">-j</span> <span class="o">&lt;&lt;&lt;</span> <span class="s1">'["version", {"optional":["relative_root"]}]'</span>
+<span class="o">{</span>
+    <span class="s2">"version"</span>: <span class="s2">"3.8.0"</span>,
+    <span class="s2">"capabilities"</span>: <span class="o">{</span>
+        <span class="s2">"relative_root"</span>: <span class="nb">true</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>If the capability is not supported:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="rougeHighlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>watchman <span class="nt">-j</span> <span class="o">&lt;&lt;&lt;</span> <span class="s1">'["version", {"optional":["will-never-exist"]}]'</span>
 <span class="o">{</span>
     <span class="s2">"version"</span>: <span class="s2">"3.8.0"</span>,
     <span class="s2">"capabilities"</span>: <span class="o">{</span>
         <span class="s2">"will-never-exist"</span>: <span class="nb">false</span>
-    <span class="o">}</span>,
-    <span class="s2">"error"</span>: <span class="s2">"client required capability </span><span class="sb">`</span>will-never-exist<span class="sb">`</span><span class="s2"> is not supported by this server"</span>
+    <span class="o">}</span>
 <span class="o">}</span>
-</pre></td></tr></tbody></table>
-</div>
-</div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
-<p>To require one feature and test whether some optional features are supported:</p>
+<p>To have the server generate an error response if a capability is not
+supported:</p>
 
-<div class="language-bash highlighter-rouge"><div class="rougeHighlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="rougeHighlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -821,7 +797,28 @@ supported:</p>
 6
 7
 8
-9</pre></td><td class="code"><pre><span class="gp">$ </span>watchman -j <span class="o">&lt;&lt;&lt;</span> <span class="s1">'["version", {"required":["term-match"],"optional":["a","b"]}]'</span>
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>watchman <span class="nt">-j</span> <span class="o">&lt;&lt;&lt;</span> <span class="s1">'["version", {"required":["will-never-exist"]}]'</span>
+<span class="o">{</span>
+    <span class="s2">"version"</span>: <span class="s2">"3.8.0"</span>,
+    <span class="s2">"capabilities"</span>: <span class="o">{</span>
+        <span class="s2">"will-never-exist"</span>: <span class="nb">false</span>
+    <span class="o">}</span>,
+    <span class="s2">"error"</span>: <span class="s2">"client required capability </span><span class="sb">`</span>will-never-exist<span class="sb">`</span><span class="s2"> is not supported by this server"</span>
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>To require one feature and test whether some optional features are supported:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="rougeHighlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>watchman <span class="nt">-j</span> <span class="o">&lt;&lt;&lt;</span> <span class="s1">'["version", {"required":["term-match"],"optional":["a","b"]}]'</span>
 <span class="o">{</span>
     <span class="s2">"version"</span>: <span class="s2">"3.8.0"</span>,
     <span class="s2">"capabilities"</span>: <span class="o">{</span>
@@ -830,13 +827,11 @@ supported:</p>
         <span class="s2">"term-match"</span>: <span class="nb">true</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</pre></td></tr></tbody></table>
-</div>
-</div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <h3 id="capabilitycheck">capabilityCheck</h3>
 
-<p>The <strong>node</strong> and <strong>python</strong> clients provide a <code class="highlighter-rouge">capabilityCheck</code> method that
+<p>The <strong>node</strong> and <strong>python</strong> clients provide a <code class="language-plaintext highlighter-rouge">capabilityCheck</code> method that
 will perform the version check above, and that also provide limited support
 for testing capability support against older versions of the watchman server.
 This facilitates a smoother transition from version number based checks
@@ -844,24 +839,23 @@ to capability named based checks.</p>
 
 <p>In <em>python</em>:</p>
 
-<div class="language-python highlighter-rouge"><div class="rougeHighlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="rougeHighlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
 5
-6</pre></td><td class="code"><pre><span class="kn">import</span> <span class="nn">pywatchman</span>
-<span class="n">client</span> <span class="o">=</span> <span class="n">pywatchman</span><span class="o">.</span><span class="n">client</span><span class="p">()</span>
-<span class="c"># will throw an error if any of the required names are not supported</span>
-<span class="n">res</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">capabilityCheck</span><span class="p">(</span><span class="n">optional</span><span class="o">=</span><span class="p">[</span><span class="s">'a'</span><span class="p">],</span> <span class="n">required</span><span class="o">=</span><span class="p">[</span><span class="s">'term-match'</span><span class="p">])</span>
+6
+</pre></td><td class="rouge-code"><pre><span class="kn">import</span> <span class="nn">pywatchman</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">pywatchman</span><span class="p">.</span><span class="n">client</span><span class="p">()</span>
+<span class="c1"># will throw an error if any of the required names are not supported
+</span><span class="n">res</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">capabilityCheck</span><span class="p">(</span><span class="n">optional</span><span class="o">=</span><span class="p">[</span><span class="s">'a'</span><span class="p">],</span> <span class="n">required</span><span class="o">=</span><span class="p">[</span><span class="s">'term-match'</span><span class="p">])</span>
 <span class="k">print</span> <span class="n">res</span>
-<span class="c"># {'version': '3.8.0', 'capabilities': {'term-match': True, 'a': False}}</span>
-</pre></td></tr></tbody></table>
-</div>
-</div>
+<span class="c1"># {'version': '3.8.0', 'capabilities': {'term-match': True, 'a': False}}
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>In <em>node</em>:</p>
 
-<div class="language-js highlighter-rouge"><div class="rougeHighlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="rougeHighlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -872,9 +866,10 @@ to capability named based checks.</p>
 9
 10
 11
-12</pre></td><td class="code"><pre><span class="kd">var</span> <span class="nx">watchman</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fb-watchman'</span><span class="p">);</span>
+12
+</pre></td><td class="rouge-code"><pre><span class="kd">var</span> <span class="nx">watchman</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">fb-watchman</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">watchman</span><span class="p">.</span><span class="nx">Client</span><span class="p">();</span>
-<span class="nx">client</span><span class="p">.</span><span class="nx">capabilityCheck</span><span class="p">({</span><span class="na">optional</span><span class="p">:[</span><span class="s1">'a'</span><span class="p">],</span> <span class="na">required</span><span class="p">:[</span><span class="s1">'term-match'</span><span class="p">]},</span>
+<span class="nx">client</span><span class="p">.</span><span class="nx">capabilityCheck</span><span class="p">({</span><span class="na">optional</span><span class="p">:[</span><span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">],</span> <span class="na">required</span><span class="p">:[</span><span class="dl">'</span><span class="s1">term-match</span><span class="dl">'</span><span class="p">]},</span>
     <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
           <span class="c1">// error will be an Error object if any of the required named</span>
@@ -884,9 +879,7 @@ to capability named based checks.</p>
         <span class="c1">// {'version': '3.8.0', 'capabilities': {'term-match': false, 'a': false}}</span>
         <span class="nx">client</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
     <span class="p">});</span>
-</pre></td></tr></tbody></table>
-</div>
-</div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
     
   </article>
